@@ -4,6 +4,9 @@
 
 **Sistema de pagamentos Pix em tempo real para lives (OBS) — Frontend + Backend**
 
+
+
+---
 ![Java](https://img.shields.io/badge/Java-21+-orange)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-green)
 ![Next.js](https://img.shields.io/badge/Next.js-App%20Router-black)
@@ -12,9 +15,6 @@
 ![SSE](https://img.shields.io/badge/SSE-Real--Time-yellow)
 ![Pix](https://img.shields.io/badge/Pix-Brasil-green)
 ![Mercado Pago](https://img.shields.io/badge/Mercado%20Pago-API-blue)
-
----
-
 ## 📌 Visão Geral
 
 **LivePix** é um sistema completo de **pagamentos Pix em tempo real**, projetado para uso em **lives e streamings**, integrando:
