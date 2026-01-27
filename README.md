@@ -1,6 +1,12 @@
 
 # LivePix 
 **Sistema de pagamentos Pix em tempo real para lives (OBS) — Frontend + Backend**
+## 🔗 Repositório Frontend
+
+👉 [https://github.com/cayoduarte/livepix-frontend](https://github.com/Cduartev/livepix-front)
+## 🔗 Repositório Backend
+
+👉 [https://github.com/cayoduarte/livepix-backend](https://github.com/Cduartev/livepix-backend)
 
 ![Java](https://img.shields.io/badge/Java-21+-orange)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-green)
