@@ -17,35 +17,40 @@ import java.time.Instant;
 @RequiredArgsConstructor
 public class ServicoCobrancaPix {
 
-    private final ClienteMercadoPago mercadoPagoClient;
-    private final PagamentosPixRepository repository;
-    private final PropriedadesMercadoPago props;
+        private final ClienteMercadoPago mercadoPagoClient;
+        private final PagamentosPixRepository repository;
+        private final PropriedadesMercadoPago props;
 
-    public RespostaPagamentoMp criarCobranca(
-            String nome,
-            BigDecimal valor,
-            String mensagem) {
-        String desc = (mensagem == null || mensagem.isBlank())
-                ? "Live Pix"
-                : mensagem;
+        public RespostaPagamentoMp criarCobranca(
+                        String nome,
+                        BigDecimal valor,
+                        String mensagem,
+                        String email) {
+                String desc = (mensagem == null || mensagem.isBlank())
+                                ? "Live Pix"
+                                : mensagem;
 
-        RequisicaoCriarPagamentoMp req = new RequisicaoCriarPagamentoMp(
-                valor,
-                "pix",
-                desc,
-                new RequisicaoCriarPagamentoMp.Payer(props.defaultPayerEmail()));
+                String payerEmail = (email == null || email.isBlank())
+                                ? props.defaultPayerEmail()
+                                : email;
 
-        RespostaPagamentoMp mp = mercadoPagoClient.criarPagamentoPix(req);
+                RequisicaoCriarPagamentoMp req = new RequisicaoCriarPagamentoMp(
+                                valor,
+                                "pix",
+                                desc,
+                                new RequisicaoCriarPagamentoMp.Payer(payerEmail));
 
-        repository.save(PagamentosPix.builder()
-                .mercadoPagoId(mp.id())
-                .nomeDoador(nome)
-                .valor(valor)
-                .mensagem(desc)
-                .status(PagamentoStatus.PENDENTE)
-                .criadoEm(Instant.now())
-                .build());
+                RespostaPagamentoMp mp = mercadoPagoClient.criarPagamentoPix(req);
 
-        return mp;
-    }
+                repository.save(PagamentosPix.builder()
+                                .mercadoPagoId(mp.id())
+                                .nomeDoador(nome)
+                                .valor(valor)
+                                .mensagem(desc)
+                                .status(PagamentoStatus.PENDENTE)
+                                .criadoEm(Instant.now())
+                                .build());
+
+                return mp;
+        }
 }
