@@ -6,11 +6,11 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- Spring Boot 3.4.2 -->
+	<!-- Spring Boot 4.0.2 -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.2</version>
+		<version>4.0.2</version>
 		<relativePath/>
 	</parent>
 
