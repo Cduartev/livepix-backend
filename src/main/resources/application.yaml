@@ -1,11 +1,12 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/livepix
-    username: SEU USER
-    password: SUA SENHA
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,7 +14,6 @@ spring:
 
 mercadopago:
   base-url: https://api.mercadopago.com
-  access-token: SEU TOKEN DE ACESSO NO MERCADO PAGO
-  webhook-secret: SEU WEBHOOK SECRET NO MERCADO PAGO
-  webhook-verify-enabled: false
-  default-payer-email: AQUI DEFINI UM EMAIL DEFAULT MAS O CORRETO SERIA PEDIR O EMAIL DE QUEM VAI FAZER A TRANSACAO NA API
+  access-token: ${MP_ACCESS_TOKEN}
+  webhook-secret: ${MP_WEBHOOK_SECRET:}
+  webhook-verify-enabled: true
