@@ -1,0 +1,19 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+mercadopago:
+  base-url: https://api.mercadopago.com
+  access-token: ${MP_ACCESS_TOKEN}
+  webhook-secret: ${MP_WEBHOOK_SECRET:}
+  webhook-verify-enabled: true
