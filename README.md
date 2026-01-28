@@ -47,7 +47,7 @@ O sistema funciona como uma ponte entre o doador, o Mercado Pago e o Streamer:
 * **Tradução e Semântica:** Código totalmente em português para facilitar a manutenção (`modelo`, `repositorio`, `servico`).
 * **Segurança:** O backend é a única fonte da verdade. O frontend nunca aprova pagamentos.
 
-### 🔔 Comunicação em Tempo Real (SSE)
+### � Comunicação em Tempo Real (SSE)
 * Usa conexões persistentes para garantir latência zero nos alertas.
 * Eventos padronizados: `connected` (boas-vindas) e `pix` (novo pagamento aprovado).
 
