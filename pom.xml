@@ -6,11 +6,11 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- Spring Boot 4.0.2 -->
+	<!-- Spring Boot 3.4.2 -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.0.2</version>
+		<version>3.4.2</version>
 		<relativePath/>
 	</parent>
 
@@ -24,9 +24,6 @@
 	<properties>
 		<java.version>21</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-		<!-- Necessário para Cloud SQL via SocketFactory -->
-		<google.cloud.sql.socket-factory.version>1.20.0</google.cloud.sql.socket-factory.version>
 	</properties>
 
 	<!-- DEPENDÊNCIAS -->
@@ -55,13 +52,6 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
-		</dependency>
-
-		<!-- Cloud SQL Postgres Socket Factory (para Cloud Run + Cloud SQL sem IP público) -->
-		<dependency>
-			<groupId>com.google.cloud.sql</groupId>
-			<artifactId>postgres-socket-factory</artifactId>
-			<version>${google.cloud.sql.socket-factory.version}</version>
 		</dependency>
 
 		<!-- WebFlux (OBS: ver nota abaixo) -->

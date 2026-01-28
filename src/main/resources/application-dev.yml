@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/livepix
+    username: postgres
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+mercadopago:
+  base-url: https://api.mercadopago.com
+  access-token: ${MP_ACCESS_TOKEN:}
+  webhook-secret: ${MP_WEBHOOK_SECRET:}
+  webhook-verify-enabled: false
