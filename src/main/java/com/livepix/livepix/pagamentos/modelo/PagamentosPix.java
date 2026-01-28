@@ -1,4 +1,4 @@
-package com.livepix.livepix.pagamentos.model;
+package com.livepix.livepix.pagamentos.modelo;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +11,8 @@ import java.util.UUID;
 @Table(name = "pagamento_pix")
 @Getter
 @Setter
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class PagamentosPix {
 
@@ -20,7 +21,6 @@ public class PagamentosPix {
     private UUID id;
     @Column(nullable = false, length = 100)
     private String nomeDoador;
-
 
     @Column(unique = true)
     private Long mercadoPagoId;

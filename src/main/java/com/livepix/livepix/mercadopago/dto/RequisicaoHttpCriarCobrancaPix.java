@@ -6,8 +6,8 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public record CreatePixChargeHttpRequest(
+public record RequisicaoHttpCriarCobrancaPix(
         @NotBlank String nome,
         @NotNull @DecimalMin("0.10") BigDecimal valor,
-        String mensagem
-) {}
+        String mensagem) {
+}

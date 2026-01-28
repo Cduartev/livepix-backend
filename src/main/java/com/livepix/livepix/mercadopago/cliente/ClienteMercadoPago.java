@@ -1,7 +1,7 @@
-package com.livepix.livepix.mercadopago.client;
+package com.livepix.livepix.mercadopago.cliente;
 
-import com.livepix.livepix.mercadopago.dto.MpCreatePaymentRequest;
-import com.livepix.livepix.mercadopago.dto.MpPaymentResponse;
+import com.livepix.livepix.mercadopago.dto.RequisicaoCriarPagamentoMp;
+import com.livepix.livepix.mercadopago.dto.RespostaPagamentoMp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -11,11 +11,11 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
-public class MercadoPagoClient {
+public class ClienteMercadoPago {
 
     private final WebClient mercadoPagoWebClient;
 
-    public MpPaymentResponse criarPagamentoPix(MpCreatePaymentRequest request) {
+    public RespostaPagamentoMp criarPagamentoPix(RequisicaoCriarPagamentoMp request) {
         String idempotencyKey = UUID.randomUUID().toString();
 
         try {
@@ -24,7 +24,7 @@ public class MercadoPagoClient {
                     .header("X-Idempotency-Key", idempotencyKey)
                     .bodyValue(request)
                     .retrieve()
-                    .bodyToMono(MpPaymentResponse.class)
+                    .bodyToMono(RespostaPagamentoMp.class)
                     .block();
 
         } catch (WebClientResponseException ex) {
@@ -38,12 +38,12 @@ public class MercadoPagoClient {
         }
     }
 
-    public MpPaymentResponse buscarPagamentoPorId(long paymentId) {
+    public RespostaPagamentoMp buscarPagamentoPorId(long paymentId) {
         try {
             return mercadoPagoWebClient.get()
                     .uri("/v1/payments/{id}", paymentId)
                     .retrieve()
-                    .bodyToMono(MpPaymentResponse.class)
+                    .bodyToMono(RespostaPagamentoMp.class)
                     .block();
 
         } catch (WebClientResponseException ex) {

@@ -1,4 +1,4 @@
-package com.livepix.livepix.pagamentos.model;
+package com.livepix.livepix.pagamentos.modelo;
 
 public enum PagamentoStatus {
     PENDENTE,

@@ -1,9 +1,9 @@
-package com.livepix.livepix.alerts.controller;
+package com.livepix.livepix.alertas.controlador;
 
-import com.livepix.livepix.alerts.AlertEvent;
-import com.livepix.livepix.alerts.service.AlertsPublisher;
-import com.livepix.livepix.pagamentos.model.PagamentoStatus;
-import com.livepix.livepix.pagamentos.repository.PagamentosPixRepository;
+import com.livepix.livepix.alertas.EventoAlerta;
+import com.livepix.livepix.alertas.servico.PublicadorAlertas;
+import com.livepix.livepix.pagamentos.modelo.PagamentoStatus;
+import com.livepix.livepix.pagamentos.repositorio.PagamentosPixRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,12 +18,12 @@ import java.util.Map;
 @RequestMapping("/dev")
 @RequiredArgsConstructor
 @Profile("dev")
-public class DevApproveController {
+public class ControladorAprovacaoDev {
 
-    private static final Logger log = LoggerFactory.getLogger(DevApproveController.class);
+    private static final Logger log = LoggerFactory.getLogger(ControladorAprovacaoDev.class);
 
     private final PagamentosPixRepository repository;
-    private final AlertsPublisher alertsPublisher;
+    private final PublicadorAlertas alertsPublisher;
 
     @PostMapping("/approve/{paymentId}")
     public ResponseEntity<?> approve(@PathVariable long paymentId) {
@@ -35,14 +35,13 @@ public class DevApproveController {
                         p.marcarAprovado();
                         repository.save(p);
 
-                        AlertEvent evt = new AlertEvent(
+                        EventoAlerta evt = new EventoAlerta(
                                 p.getNomeDoador(),
                                 p.getStatus().name(),
                                 p.getMensagem(),
                                 p.getValor(),
                                 paymentId,
-                                Instant.now()
-                        );
+                                Instant.now());
 
                         log.info("DEV publish alert: {}", evt);
                         alertsPublisher.publish(evt);
@@ -54,16 +53,14 @@ public class DevApproveController {
                             "status", p.getStatus().name(),
                             "nome", p.getNomeDoador(),
                             "valor", p.getValor(),
-                            "mensagem", p.getMensagem()
-                    ));
+                            "mensagem", p.getMensagem()));
                 })
                 .orElseGet(() -> {
                     log.warn("DEV approve NOT FOUND paymentId={}", paymentId);
                     return ResponseEntity.status(404).body(Map.of(
                             "ok", false,
                             "error", "Pagamento não encontrado no banco para esse mercadoPagoId",
-                            "paymentId", paymentId
-                    ));
+                            "paymentId", paymentId));
                 });
     }
 }

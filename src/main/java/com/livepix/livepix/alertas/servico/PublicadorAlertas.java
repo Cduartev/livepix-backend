@@ -1,4 +1,4 @@
-package com.livepix.livepix.alerts.service;
+package com.livepix.livepix.alertas.servico;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
-public class AlertsPublisher {
+public class PublicadorAlertas {
 
     private final Set<SseEmitter> emitters = ConcurrentHashMap.newKeySet();
 

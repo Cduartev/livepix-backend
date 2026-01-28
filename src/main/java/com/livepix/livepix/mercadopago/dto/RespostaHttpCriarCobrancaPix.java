@@ -1,8 +1,8 @@
 package com.livepix.livepix.mercadopago.dto;
 
-public record CreatePixChargeHttpResponse(
+public record RespostaHttpCriarCobrancaPix(
         long paymentId,
         String status,
         String qrCode,
-        String qrCodeBase64
-) {}
+        String qrCodeBase64) {
+}

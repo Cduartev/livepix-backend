@@ -1,9 +1,9 @@
-package com.livepix.livepix.alerts;
+package com.livepix.livepix.alertas;
 
 import java.math.BigDecimal;
 import java.time.Instant;
 
-public record AlertEvent(
+public record EventoAlerta(
         String nome,
         String status,
         String mensagem,
@@ -11,4 +11,5 @@ public record AlertEvent(
         long paymentId,
         Instant em
 
-) {}
+) {
+}
