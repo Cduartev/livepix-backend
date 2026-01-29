@@ -13,30 +13,31 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ControladorPix {
 
-    private final ServicoCobrancaPix pixChargeService;
+        private final ServicoCobrancaPix pixChargeService;
 
-    @PostMapping("/cobrar")
-    public RespostaHttpCriarCobrancaPix cobrar(
-            @Valid @RequestBody RequisicaoHttpCriarCobrancaPix req) {
-        RespostaPagamentoMp mp = pixChargeService.criarCobranca(
-                req.nome(),
-                req.valor(),
-                req.mensagem());
+        @PostMapping("/cobrar")
+        public RespostaHttpCriarCobrancaPix cobrar(
+                        @Valid @RequestBody RequisicaoHttpCriarCobrancaPix req) {
+                RespostaPagamentoMp mp = pixChargeService.criarCobranca(
+                                req.nome(),
+                                req.valor(),
+                                req.mensagem(),
+                                req.email());
 
-        String qr = mp.pointOfInteraction() != null &&
-                mp.pointOfInteraction().transactionData() != null
-                        ? mp.pointOfInteraction().transactionData().qrCode()
-                        : null;
+                String qr = mp.pointOfInteraction() != null &&
+                                mp.pointOfInteraction().transactionData() != null
+                                                ? mp.pointOfInteraction().transactionData().qrCode()
+                                                : null;
 
-        String qrB64 = mp.pointOfInteraction() != null &&
-                mp.pointOfInteraction().transactionData() != null
-                        ? mp.pointOfInteraction().transactionData().qrCodeBase64()
-                        : null;
+                String qrB64 = mp.pointOfInteraction() != null &&
+                                mp.pointOfInteraction().transactionData() != null
+                                                ? mp.pointOfInteraction().transactionData().qrCodeBase64()
+                                                : null;
 
-        return new RespostaHttpCriarCobrancaPix(
-                mp.id(),
-                mp.status(),
-                qr,
-                qrB64);
-    }
+                return new RespostaHttpCriarCobrancaPix(
+                                mp.id(),
+                                mp.status(),
+                                qr,
+                                qrB64);
+        }
 }

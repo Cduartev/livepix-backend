@@ -12,8 +12,7 @@ public class ConfiguracaoCors implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins(
                         "http://localhost:3000"
-                // quando usar ngrok no front, adicione aqui também:
-                // , "https://SEU-FRONT.ngrok-free.dev"
+
                 )
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")

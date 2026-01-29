@@ -1,12 +1,12 @@
 server:
-  port: ${PORT:8080}
+  port: 8080
 
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/livepix
+    username: postgres
+    password: admin
   jpa:
     hibernate:
       ddl-auto: update
@@ -14,6 +14,6 @@ spring:
 
 mercadopago:
   base-url: https://api.mercadopago.com
-  access-token: ${MP_ACCESS_TOKEN}
+  access-token: ${MP_ACCESS_TOKEN:}
   webhook-secret: ${MP_WEBHOOK_SECRET:}
-  webhook-verify-enabled: true
+  webhook-verify-enabled: false
