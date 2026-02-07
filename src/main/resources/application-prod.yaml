@@ -17,3 +17,9 @@ mercadopago:
   access-token: ${MP_ACCESS_TOKEN}
   webhook-secret: ${MP_WEBHOOK_SECRET:}
   webhook-verify-enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
