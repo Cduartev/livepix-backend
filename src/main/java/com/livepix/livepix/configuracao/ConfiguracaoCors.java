@@ -12,6 +12,7 @@ public class ConfiguracaoCors implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins(
                         "http://localhost:3000"
+                        "https://livepix-front.vercel.app/"
 
                 )
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
